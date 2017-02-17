@@ -1,20 +1,15 @@
 Attribute VB_Name = "GetUserInput"
 Option Explicit
 Public Sub test()
-    If 1 = 0 Then
-        Dim x As Variant
-        x = ImportDataFromExternalSource(False, 1)
-        MsgBox x(1)
-    End If
-    Application.Visible = True
-    Dim y As Range
-    Set y = GetUserInputRange
-    If y Is Nothing Then Exit Sub
+    Dim x As Variant
+    x = ImportDataFromExternalSource(False, 1)
+    Debug.Print x(1)
 End Sub
 
 Private Function GetUserInputRange() As Range
     'This is segregated because of how excel handles cancelling a range input
     'See http://stackoverflow.com/a/36630124/1161309
+    Dim userAnswer As Range
     On Error GoTo ErrorHandler
     Set userAnswer = Application.InputBox("Please select a range", "Range Selector", Type:=8)
     Set GetUserInputRange = userAnswer
@@ -32,7 +27,7 @@ Private Function ImportDataFromExternalSource(ByVal pickSheet As Boolean, Option
     Dim targetSheet As Worksheet
     Dim targetDataRange As Range
     On Error GoTo ErrorHandler
-    fileName = File_Picker(pickSheet)
+    fileName = File_Picker()
     
     Set targetBook = xlApp.Workbooks.Open(fileName)
     Set targetSheet = targetBook.Sheets(1)
@@ -64,7 +59,7 @@ ErrorHandler:
     Resume CleanExit
 End Function
 
-Public Function File_Picker(ByVal pickSheet As Boolean) As String
+Public Function File_Picker() As String
     Dim workbookName As String
     Dim selectFile As FileDialog
     Set selectFile = Application.FileDialog(msoFileDialogOpen)
