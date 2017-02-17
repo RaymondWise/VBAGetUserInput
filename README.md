@@ -5,6 +5,8 @@ Copyright 2017 Raymond Wise @ [Github Source](https://github.com/RaymondWise/VBA
 
 **Language: VBA**
 
+[![Code Review](http://www.zomis.net/codereview/shield/?qid=125698)](http://codereview.stackexchange.com/q/155616/75587)
+
 ##What this is
 This project has procedures for requesting user input as excel range, excel worksheet or excel workbook/.csv.
 
